@@ -86,7 +86,7 @@ const teamData = [
     },
     {
         name: "Kyledev",
-        role: "Frontend Developer",
+        role: "Full-Stack Developer",
         teamPic: imagePaths.kyle, 
     },
     {

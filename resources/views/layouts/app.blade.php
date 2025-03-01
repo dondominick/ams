@@ -17,10 +17,10 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
-<body class="font-sans antialiased bg-gradient-to-r from-purple-500 to-indigo-900" onload="startTime()">
-    <div class="min-h-full w-full">
+<body class="font-sans antialiased bg-gray-200" onload="startTime()">
+    <div class="min-h-full w-full bg-gray-200">
         <!-- Navigation Bar -->
-        <nav class="bg-violet-800 w-full fixed top-0 right-0 left-0">
+        <nav class="bg-gray-900 w-full fixed top-0 right-0 left-0">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="flex h-16 items-center justify-between">
                     <div class="flex items-center">
@@ -57,7 +57,7 @@
                             <button type="button"
                                 class="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                                 <span class="sr-only">View notifications</span>
-                                <svg class="h-6 w-6 text-yellow-200" fill="none" viewBox="0 0 24 24"
+                                <svg class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
@@ -72,7 +72,7 @@
                                         id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                         <span class="sr-only">Open user menu</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="currentColor" class="size-10 text-yellow-400">
+                                            stroke-width="1.5" stroke="currentColor" class="size-10 text-green-400">
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                 d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                         </svg>
@@ -111,12 +111,7 @@
         </nav>
 
         <!-- Main Content -->
-        <fieldset class="border-4 rounded-md border-indigo-900 min-h-dvh mt-[5em] bg-gray-200 p-2">
-            <legend
-                class="text-center rounded-xl text-3xl text-gray-100 bg-violet-700 font-extrabold border-4 border-indigo-900 py-2 px-8">
-                RFID Attendance Management System
-            </legend>
-
+        <section class="min-h-dvh mt-[5em] p-2">
             <img src="{{ asset('images/logos/fox.png') }}" alt=""
                 class="max-h-[100px] fixed z-0 opacity-25 bottom-0 hover:opacity-100 transition-opacity duration-100">
 
@@ -126,10 +121,11 @@
                 </header>
             @endisset
 
-            <main class="mt-4">
+            <main class="mt-4 px-5">
                 {{ $slot }}
             </main>
-        </fieldset>
+        </section>
+
     </div>
 
 

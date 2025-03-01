@@ -26,4 +26,5 @@ class Event extends Model
         "admin_id",
         "status"
     ];
+
 }

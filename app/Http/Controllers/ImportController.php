@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Log;
+use Throwable;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Imports\StudentImport;
 use Maatwebsite\Excel\Facades\Excel;
-use Throwable;
 
 class ImportController extends Controller
 {
@@ -31,6 +32,7 @@ class ImportController extends Controller
                 return redirect()->back()->with('error', $error->getMessage()); //For Duplicate Entries
             }else{
                 return redirect()->back()->with('error', $error->getMessage());
+                
             }
         }
     }

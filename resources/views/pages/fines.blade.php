@@ -228,7 +228,7 @@
 
         {{-- Fines Table Section --}}
         <div class="mt-8">
-            <h3 class="text-3xl text-violet-800 font-extrabold mb-4">
+            <h3 class="text-3xl text-violet-700 font-extrabold mb-4">
                 Fines Record
             </h3>
             <table class="min-w-full w-full text-sm text-center rtl:text-right text-gray-900 font-semibold">
@@ -246,21 +246,21 @@
                         <td>Date</td>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="student_table_body">
                     @php
                         $i = 1;
                     @endphp
                     @foreach ($logs as $fine)
-                        <tr>
-                            <td>{{ $i++ }}</td>
+                        <tr class="table_row shadow-lg border-3">
+                            <td class="py-5">{{ $i++ }}</td>
                             <td>{{ $fine->s_fname . ' ' . $fine->s_lname }}</td>
                             <td>{{ $fine->s_program }}</td>
-                            <td>{{ $fine->s_set }}</td>
+                             <td>{{ $fine->s_set }}</td>
                             <td>{{ $fine->s_lvl }}</td>
                             <td>
-                                <ul class="list-disc list-inside text-left">
+                                <ul class="text-center text-red-700 font-mono text-base">
                                     @if($fine->morning_checkIn_missed)
-                                        <li>Morning Check-in</li>
+                                       <li>Morning Check-in</li>
                                     @endif
                                     @if($fine->morning_checkOut_missed)
                                         <li>Morning Check-out</li>
@@ -275,13 +275,16 @@
                             </td>
                             <td>₱{{ number_format($fine->fines_amount, 2) }}</td>
                             <td>₱{{ number_format($fine->total_fines, 2) }}</td>
-                            <td>{{ $fine->event_id }}</td>
+                            <td>{{ $fine->event_name}}</td> 
                             <td>{{ $fine->created_at ? date('Y-m-d', strtotime($fine->created_at)) : '-' }}</td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+
         </div>
+        
     </div>
+    
 
 </x-app-layout>

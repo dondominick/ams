@@ -1,13 +1,13 @@
 <div x-data="{ open: false }" class="transition-all flex justify-end ">
     <button x-on:click="open = ! open"
-        class="transition-colors hover:bg-violet-800 ease-linear transform-all bg-violet-600 text-white rounded-xl px-5 text-2xl">
+        class="transition-colors hover:bg-green-600 ease-linear transform-all bg-green-500 text-white rounded-2xl px-3 text-xl">
         {{ $button }}
     </button>
 
     <div x-show.important="open" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center ">
-        <div x-on:click.outside="open = false" class="max-w-[1000px] bg-white p-6 rounded-lg shadow-lg">
-            <div class="border-b-2 border-gray-300 mb-5 ">
-                <h1 class="text-2xl font-bold">
+        <div x-on:click.outside="open = false" class="max-w-[1000px] bg-gray-900 text-gray-200 p-6 rounded-lg shadow-lg">
+            <div class="border-b-2 border-green-500 mb-5 ">
+                <h1 class="text-2xl font-bold text-green-500">
                     {{ $heading }}
                 </h1>
             </div>

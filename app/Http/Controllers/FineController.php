@@ -17,8 +17,12 @@ class FineController extends Controller
 
     public function view(){
         // RETRIEVE ALL STUDENT
-        $logs = DB::table('students')->leftJoin('fines', 'students.id', '=', 'fines.student_id')
+        $logs = DB::table('students')
+        ->leftJoin('fines', 'students.id', '=', 'fines.student_id')
+        ->leftJoin('events', 'events.id', '=', 'fines.event_id')
+        ->select('students.*', 'fines.*', 'events.event_name')
         ->get();
+        // $logs = Fine::with("student", "event")->get();
 
         $events = Event::select('*')->orderBy('created_at')->get();
 

@@ -55,84 +55,95 @@
         </script>
     @endif
 
-    <x-slot name="header">
-        <div class="">
-            <h2 class="font-semibold text-3xl text-violet-800 leading-tight">
-                Welcome, {{ ucwords(auth()->user()->admin_uname) }}
-            </h2>
+    {{-- <x-slot name="header">
+        <div class="flex items-center gap-3">
+            <div class="">
+
+            </div>
+            <div class="">
+                <img src="{{asset('images/icons/default-image.svg')}}" alt="">
+            </div>
         </div>
-    </x-slot>
+    </x-slot> --}}
 
     <div class="flex gap-5 mb-4">
-        <div class="bg-white basis-1/2 flex gap-20 p-3 items-start rounded-md">
-            <div class="">
-                <p class="text-base font-bold">First Name: <span
-                        class="text-slate-500 font-medium">{{ ucfirst(auth()->user()->admin_fname) }}</span></p>
-                <p class="text-base font-bold">Last Name: <span
-                        class="text-slate-500 font-medium">{{ ucfirst(auth()->user()->admin_lname) }}</span></p>
-                <p class="text-base font-bold">Role: <span
-                        class="text-slate-500 font-medium">{{ ucfirst(auth()->user()->admin_type) }}</span></p>
-                <p class="text-base font-bold">Username: <span
-                        class="text-slate-500 font-medium">{{ ucfirst(auth()->user()->admin_uname) }}</span></p>
+        <div class="bg-gray-900 h-auto basis-1/2 p-3 rounded-md flex flex-col justify-between">
+            <div class="flex justify-between">
+                <div class="bg-gray-900 py-1 px-3">
+                    <h2 class="text-4xl font-semibold text-green-500">Welcome, <span class="text-gray-200">{{ ucwords(auth()->user()->admin_uname) }}</span></h2>
+                    <p class="text-gray-200 pt-1">RFID Attendance Management System</p>
+                </div>
+                <div class="py-1 px-3">
+                    <a href="{{route('profile.edit')}}">
+                        <button type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                            </svg>                
+                        </button>
+                    </a>
+                </div>
             </div>
-            {{-- <div class="">
-                <p class="text-base font-bold">Account Created: <span
-                        class="text-slate-500 font-medium">{{ auth()->user()->created_at }}</span></p>
-                <p class="text-base font-bold">Account Updated: <span
-                        class="text-slate-500 font-medium">{{ auth()->user()->updated_at }}</span></p>
-                <p class="text-base font-bold">Email Address: <span
-                        class="text-slate-500 font-medium">{{ auth()->user()->admin_email }}</span></p>
-            </div> --}}
+            <div class="flex justify-start gap-3">
+                <button onclick="location.href = '{{ route('attendance') }}'"
+                    class="bg-gradient-to-r from-lime-500 to-lime-600 hover:bg-green-700 hover:scale-105 ease-linear transition-all text-white rounded-2xl px-4 py-4 text-lg flex items-center gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-7">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z" />
+                    </svg>
+                    Attendance
 
-        </div>
-        <div class="bg-white basis-1/2 flex items-center justify-evenly rounded-md">
-            <div onclick="window.location.href = '{{ route('students') }}'"
-                class="flex items-center gap-1 bg-yellow-500 rounded-md p-2 hover:scale-105 hover:text-gray-900 ease-linear transition-all cursor-pointer">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="size-20">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-                </svg>
-
-                <h1 class="font-semibold text-2xl">
-                    <span>{{ $studentCount }}</span>
-                    Students
-                </h1>
-            </div>
-            <div onclick="window.location.href = '{{ route('students') }}'"
-                class="flex items-center gap-1 bg-yellow-500 rounded-lg p-2 hover:scale-105 hover:text-gray-900 ease-linear transition-all cursor-pointer">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="size-20">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
-                </svg>
-
-
-                <h1 class="font-semibold text-2xl">
-                    <span>{{ $graduateCount }}</span>
-                    Graduates
-                </h1>
+                </button>
             </div>
         </div>
+        <div class="bg-gray-900 basis-1/2 rounded-lg p-4 shadow-md">
+            <div class="flex flex-col items-start">
+                <h1 class="text-4xl font-semibold text-gray-200">Student Statistics</h1>
+            </div>
+            <div class="flex gap-5 justify-center items-center py-10">
+                <!-- Students Card -->
+                <div onclick="window.location.href = '{{ route('students') }}'"
+                    class="flex items-center gap-3 bg-gradient-to-r from-lime-600 to-lime-700 text-white rounded-lg p-4 shadow-lg hover:shadow-xl hover:scale-105 transition-all cursor-pointer">
+                    <div class="bg-white/20 p-3 rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-14 h-14">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-4xl font-bold">{{ $studentCount }}</h1>
+                        <p class="text-lg font-medium opacity-90">Enrolled Students</p>
+                    </div>
+                </div>
+    
+                <!-- Graduates Card -->
+                <div onclick="window.location.href = '{{ route('students') }}'"
+                    class="flex items-center gap-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg p-4 shadow-lg hover:shadow-xl hover:scale-105 transition-all cursor-pointer">
+                    <div class="bg-white/20 p-3 rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-14 h-14">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-4xl font-bold">{{ $graduateCount }}</h1>
+                        <p class="text-lg font-medium opacity-90">Graduates</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
     </div>
 
 
-    <div class="flex items-center justify-between bg-white p-3 rounded">
+    <div class="flex items-center justify-between bg-white p-3 rounded-lg">
         <div class="flex gap-5">
-            <button onclick="location.href = '{{ route('attendance') }}'"
-                class="bg-violet-800 hover:bg-violet-950 ease-linear transition-all text-white rounded-xl px-3 text-[20px] flex items-center gap-1">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="size-7">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z" />
-                </svg>
-                Attendance
-
-            </button>
             <div id="clockdate">
-                <div class="clockdate-wrapper bg-gray-800 p-2 max-w-xs w-full text-center rounded-xl mx-auto shadow-lg">
-                    <div id="clock" class="bg-gray-800 text-yellow-400 text-2xl font-sans shadow-sm"></div>
+                <div class="clockdate-wrapper bg-gray-800 p-2 max-w-xs w-full text-center rounded-xl mx-auto shadow-lg border-2 border-gray-900">
+                    <div id="clock" class="bg-gray-800 text-lime-500 text-2xl font-sans shadow-sm"></div>
                     <div id="date" class="tracking-widest text-sm font-sans text-white"></div>
                 </div>
             </div>
@@ -143,7 +154,7 @@
             {{-- MODALS --}}
             <x-new-modal>
                 <x-slot name="button"
-                    class="bg-violet-600 hover:bg-violet-950 ease-linear transition-all text-white rounded-xl px-5 text-2xl
+                    class="bg-green-500 hover:bg-green-600 ease-linear transition-all text-white rounded-xl px-5 text-2xl
                     flex items-center p-4 gap-1">
                     <div class="flex px-3 py-2">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -164,15 +175,15 @@
 
                         <div class="flex flex-col mb-3">
                             <label for="">Day or Event:</label>
-                            <input type="text" placeholder="Enter Event Name" name="event_name">
+                            <input type="text" placeholder="Enter Event Name" name="event_name" class="bg-gray-800 text-green-500">
                         </div>
 
                         <div class="flex flex-col mb-3">
                             <label for="">Event Date:</label>
-                            <input type="date" name="date" class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                            <input type="date" name="date" class="bg-gray-800 border leading-none border-gray-300 text-green-400 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                         </div>
 
-                        <p>Check In:</p>
+                        <p class="text-xl text-green-500 font-bold">Check In:</p>
                         <div class="flex gap-5 mb-3">
                             <div class="w-full">
                                 <label for="start-time"
@@ -189,7 +200,7 @@
                                         </svg>
                                     </div>
                                     <input type="time" id="start-time" name="checkIn_start"
-                                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-green-500 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         min="09:00" max="18:00" value="00:00" required />
                                 </div>
                             </div>
@@ -209,7 +220,7 @@
                                         </svg>
                                     </div>
                                     <input type="time" id="checkIn_end" name="checkIn_end"
-                                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-green-500 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         min="09:00" max="18:00" value="00:00" required />
                                 </div>
                             </div>
@@ -232,7 +243,7 @@
                                         </svg>
                                     </div>
                                     <input type="time" id="start-time" name="checkOut_start"
-                                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-green-500 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         min="09:00" max="18:00" value="00:00" required />
                                 </div>
                             </div>
@@ -252,7 +263,7 @@
                                         </svg>
                                     </div>
                                     <input type="time" id="end-time" name="checkOut_end"
-                                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-green-500 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         min="09:00" max="18:00" value="00:00" required />
                                 </div>
                             </div>
@@ -265,8 +276,8 @@
 {{-- AFTERNOON ATTENDANCE --}}
 
                         <div id="afternoon_attendance" class="hidden transition-all">
-                            <p>Afternoon Attendance</p>
-                            <p>Check In:</p>
+                            <p class="text-2xl font-bold text-green-500">Afternoon Attendance</p>
+                            <p class="text-xl font-semibold text-green-500">Check In:</p>
                             <div class="flex gap-5 mb-3">
                                 <div class="w-full">
                                     <label for="start-time"
@@ -284,7 +295,7 @@
                                             </svg>
                                         </div>
                                         <input type="time" id="start-time" name="afternoon_checkIn_start"
-                                            class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            class="bg-gray-800 border leading-none border-gray-300 text-green-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                             min="09:00" max="18:00" value="00:00" required />
                                     </div>
                                 </div>
@@ -304,7 +315,7 @@
                                             </svg>
                                         </div>
                                         <input type="time" id="end-time" name="afternoon_checkIn_end"
-                                            class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            class="bg-gray-800 border leading-none border-gray-300 text-green-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                             min="09:00" max="18:00" value="00:00" required />
                                     </div>
                                 </div>
@@ -327,7 +338,7 @@
                                             </svg>
                                         </div>
                                         <input type="time" id="start-time" name="afternoon_checkOut_start"
-                                            class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            class="bg-gray-800 border leading-none border-gray-300 text-green-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                             min="09:00" max="18:00" value="00:00" required />
                                     </div>
                                 </div>
@@ -347,7 +358,7 @@
                                             </svg>
                                         </div>
                                         <input type="time" id="end-time" name="afternoon_checkOut_end"
-                                            class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            class="bg-gray-800 border leading-none border-gray-300 text-green-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                             min="09:00" max="18:00" value="00:00" required />
                                     </div>
                                 </div>
@@ -389,39 +400,39 @@
                                     <label for="">
                                         RFID
                                     </label>
-                                    <input type="text" placeholder="Scan RFID" name="s_rfid" id="s_rfid" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <input type="text" placeholder="Scan RFID" name="s_rfid" id="s_rfid" class="bg-gray-800 border border-gray-300 text-green-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                 </div>
                                 <div class="grid grid-cols-1">
                                     <label for="">Student ID:</label>
-                                    <input type="text" placeholder="Enter Student ID (Ex. 2023-00069)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                    <input type="text" placeholder="Enter Student ID (Ex. 2023-00069)" class="bg-gray-800 border border-gray-300 text-green-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         name="s_studentID" id="s_studentID">
                                 </div>
                             </div>
                             <div class="grid grid-cols-1 mt-5 mx-7">
                                 <label for="">First Name:</label>
-                                <input type="text" placeholder="Enter Firstname" name="s_fname" id="s_fname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                <input type="text" placeholder="Enter Firstname" name="s_fname" id="s_fname" class="bg-gray-800 border border-gray-300 text-green-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                             </div>
                             <div class="grid grid-cols-1 mt-5 mx-7">
                                 <label for="">Last Name:</label>
-                                <input type="text" placeholder="Enter Lastname" name="s_lname" id="s_lname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                <input type="text" placeholder="Enter Lastname" name="s_lname" id="s_lname" class="bg-gray-800 border border-gray-300 text-green-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
 
                                 <div class="grid grid-cols-1">
                                     <label for="">Middle Name</label>
-                                    <input type="text" placeholder="Enter Middlename" name="s_mname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                    <input type="text" placeholder="Enter Middlename" name="s_mname" class="bg-gray-800 border border-gray-300 text-green-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         id="s_mname">
                                 </div>
                                 <div class="grid grid-cols-1">
                                     <label for="">Suffix</label>
-                                    <input type="text" placeholder="Enter Suffix" name="s_suffix" id="s_suffix" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <input type="text" placeholder="Enter Suffix" name="s_suffix" id="s_suffix" class="bg-gray-800 border border-gray-300 text-green-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                 </div>
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8 mt-5 mx-7">
 
                                 <div class="grid grid-cols-1">
                                     <label for="">Program</label>
-                                    <select name="s_program" id="s_program" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <select name="s_program" id="s_program" class="bg-gray-800 border border-gray-300 text-green-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                         <option selected value="">Select Program</option>
                                         <option value="BSIT">BSIT</option>
                                         <option value="BSIS">BSIS</option>
@@ -429,7 +440,7 @@
                                 </div>
                                 <div class="grid grid-cols-1">
                                     <label for="">Year Level</label>
-                                    <select name="s_lvl" id="s_lvl" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <select name="s_lvl" id="s_lvl" class="bg-gray-800 border border-gray-300 text-green-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                         <option selected value="">Select Year Level</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -439,7 +450,7 @@
                                 </div>
                                 <div class="grid grid-cols-1">
                                     <label for="">Set</label>
-                                    <select name="s_set" id="s_set" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <select name="s_set" id="s_set" class="bg-gray-800 border border-gray-300 text-green-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                         <option selected value="">Select Set</option>
                                         <option value="A">A</option>
                                         <option value="B">B</option>
@@ -458,7 +469,7 @@
                             <input id="uploadFile" type="file" name="s_image" x-ref="imageFile"
                                 x-on:change="image = URL.createObjectURL($refs.imageFile.files[0])" hidden>
                             <button x-on:click="$refs.imageFile.click()" type="button"
-                                class="bg-green-400 text-white px-3 py-2 text-xl">
+                                class="bg-green-600 rounded-xl text-white px-3 py-2 text-xl">
                                 Upload Image
                             </button>
                         </div>
@@ -477,14 +488,14 @@
     </div>
 
 
-    <div class="mt-4">
+    <div class="mt-4 bg-gray-100 shadow-lg p-5 rounded-md">
         <div class="flex justify-between">
-            <h3 class="text-3xl text-violet-800 font-extrabold">
+            <h3 class="text-3xl text-gray-950 font-extrabold mb-3">
                 Attendance Record
             </h3>
 
             {{-- full-screen-btn --}}
-            <button id="fullscreenToggle" class="bg-violet-600 text-white px-4 py-2 rounded-md mb-2">
+            <button id="fullscreenToggle" class="bg-lime-600 text-white px-4 py-2 rounded-md mb-2">
                 <svg height="15px" width="15px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                     viewBox="0 0 512 512"  xml:space="preserve">
                 <style type="text/css">
@@ -502,32 +513,34 @@
                 </svg>
             </button>
         </div>
-        <div id="tableContainer" class="relative overflow-auto border border-gray-300 p-2" >
-            <table class="min-w-full" >
-                <tr class="bg-violet-200 text-violet-900 py-2 text-lg font-semibold">
-                    <td>No.</td>
-                    <td>Name</td>
-                    <td>Program</td>
-                    <td>Set</td>
-                    <td>Year Level</td>
-                    <td>Time In</td>
-                    <td>Time Out</td>
-                    <td>Event</td>
-                    <td>Date</td>
-                </tr>
-                <tbody>
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg" >
+            <table id="tableContainer" class="min-w-full w-full text-sm text-left rtl:text-right" >
+                <thead class="text-lg font-semibold text-gray-100 uppercase bg-green-700">
+                    <tr>
+                        <td class="p-2">No.</td>
+                        <td>Name</td>
+                        <td>Program</td>
+                        <td>Set</td>
+                        <td>Year Level</td>
+                        <td>Time In</td>
+                        <td>Time Out</td>
+                        <td>Event</td>
+                        <td>Date</td>
+                    </tr>
+                </thead>
+                <tbody class="border-3 shadow-lg text-gray-950 text-base hover:bg-gray-400 cursor-pointer">
                     @php
                         $index = 1;
                     @endphp
                     @foreach ($attendances as $attendance)
-                        <tr>
-                            <td>{{ $index++ }}</td>
+                        <tr class="font-semibold shadow-lg border-3">
+                            <td class="py-5 px-3">{{ $index++ }}</td>
                             <td>{{ $attendance->s_fname . ' ' . $attendance->s_lname }}</td>
                             <td>{{ $attendance->s_program }}</td>
                             <td>{{ $attendance->s_set }}</td>
                             <td>{{ $attendance->s_lvl }}</td>
-                            <td>{{ $attendance->attend_checkIn ? date('h:i A', strtotime($attendance->attend_checkIn)) : '-' }}</td>
-                            <td>{{ $attendance->attend_checkOut ? date('h:i A', strtotime($attendance->attend_checkOut)) : '-' }}</td>
+                            <td>{{ $attendance->attend_checkIn ? date('h:i A', strtotime($attendance->attend_checkIn)) : 'N/A' }}</td>
+                            <td>{{ $attendance->attend_checkOut ? date('h:i A', strtotime($attendance->attend_checkOut)) : 'N/A' }}</td>
                             <td>{{ $attendance->event_name }}</td>
                             <td>{{ $attendance->date }}</td>
                         </tr>
