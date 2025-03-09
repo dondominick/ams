@@ -69,7 +69,7 @@
     <div class="flex gap-5 mb-4">
         <div class="bg-gray-900 h-auto basis-1/2 p-3 rounded-md flex flex-col justify-between">
             <div class="flex justify-between">
-                <div class="bg-gray-900 py-1 px-3">
+                <div class="py-1 px-3">
                     <h2 class="text-4xl font-semibold text-green-500">Welcome, <span class="text-gray-200">{{ ucwords(auth()->user()->admin_uname) }}</span></h2>
                     <p class="text-gray-200 pt-1">RFID Attendance Management System</p>
                 </div>
