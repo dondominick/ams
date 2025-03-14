@@ -38,13 +38,13 @@
 
     <x-slot name="header">
         <div class="">
-            <h2 class="font-semibold text-3xl text-violet-800 leading-tight">
+            <h2 class="font-semibold text-4xl text-gray-900 leading-tight">
                 Events Dashboard
             </h2>
         </div>
     </x-slot>
     <div class="mt-4" x-data="{ open: false }">
-        <div x-show.important="open" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+        <div x-show.important="open" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
             <div x-on:click.outside="open = false" class="max-w-[1000px] bg-white p-6 rounded-lg shadow-lg">
                 <div class="border-b-2 border-gray-300 mb-5">
                     <h1 class="text-2xl font-bold">
@@ -66,7 +66,7 @@
                             <input type="date" name="date" id="evn_date" class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                         </div>
 
-                        <p>Check In:</p>
+                        <p class="text-xl font-semibold text-gray-900">Check In:</p>
                         <div class="flex gap-5 mb-3">
                             <div class="w-full">
                                 <label for="start-time"
@@ -83,7 +83,7 @@
                                         </svg>
                                     </div>
                                     <input type="time" name="checkIn_start" id="in_start"
-                                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         min="09:00" max="18:00" value="00:00" required />
                                 </div>
                             </div>
@@ -102,12 +102,12 @@
                                         </svg>
                                     </div>
                                     <input type="time" name="checkIn_end" id="in_end"
-                                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         min="09:00" max="18:00" value="00:00" required />
                                 </div>
                             </div>
                         </div>
-                        <p>Check Out:</p>
+                        <p class="text-xl font-semibold text-gray-900">Check Out:</p>
                         <div class="flex gap-5 mb-3">
                             <div class="w-full">
                                 <label for="start-time"
@@ -124,7 +124,7 @@
                                         </svg>
                                     </div>
                                     <input type="time" name="checkOut_start"
-                                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         min="09:00" max="18:00" value="00:00" id="out_start" required />
                                 </div>
                             </div>
@@ -143,7 +143,7 @@
                                         </svg>
                                     </div>
                                     <input type="time" name="checkOut_end"
-                                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         min="09:00" max="18:00" value="00:00" id="out_end" required />
                                 </div>
                             </div>
@@ -153,8 +153,8 @@
                             <label for="">Whole Day?</label>
                         </div>
                         <div id="afternoon_attendance" class="hidden transition-all">
-                            <p>Afternoon Attendance</p>
-                            <p>Check In:</p>
+                            <p class="text-2xl font-semibold text-gray-900">Afternoon Attendance</p>
+                            <p class="text-xl font-semibold text-gray-900">Check In:</p>
                             <div class="flex gap-5 mb-3">
                                 <div class="w-full">
                                     <label for="start-time"
@@ -172,7 +172,7 @@
                                             </svg>
                                         </div>
                                         <input type="time" id="afternoon_in_start" name="afternoon_checkIn_start"
-                                            class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                             min="09:00" max="18:00" value="00:00" required />
                                     </div>
                                 </div>
@@ -192,12 +192,12 @@
                                             </svg>
                                         </div>
                                         <input type="time" id="afternoon_in_end" name="afternoon_checkIn_end"
-                                            class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                             min="09:00" max="18:00" value="00:00" required />
                                     </div>
                                 </div>
                             </div>
-                            <p>Check Out:</p>
+                            <p class="text-xl font-semibold text-gray-900">Check Out:</p>
                             <div class="flex gap-5 mb-3">
                                 <div class="w-full">
                                     <label for="start-time"
@@ -215,7 +215,7 @@
                                             </svg>
                                         </div>
                                         <input type="time" id="afternoon_out_start" name="afternoon_checkOut_start"
-                                            class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                             min="09:00" max="18:00" value="00:00" required />
                                     </div>
                                 </div>
@@ -235,7 +235,7 @@
                                             </svg>
                                         </div>
                                         <input type="time" id="afternoon_out_end" name="afternoon_checkOut_end"
-                                            class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                             min="09:00" max="18:00" value="00:00" required />
                                     </div>
                                 </div>
@@ -258,9 +258,9 @@
 
         <div class="flex justify-between items-center mb-3">
 
-            <h3 class="text-[20px] text-violet-800 font-extrabold">
+            {{-- <h3 class="text-[20px] text-violet-800 font-extrabold">
                 Record of Events
-            </h3>
+            </h3> --}}
 
             <x-new-modal>
                 <x-slot name="button"
@@ -291,7 +291,7 @@
                             <input type="date" name="date" class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                         </div>
 
-                        <p>Check In:</p>
+                        <p class="text-xl font-semibold text-gray-900">Check In:</p>
                         <div class="flex gap-5 mb-3">
                             <div class="w-full">
                                 <label for="start-time"
@@ -309,7 +309,7 @@
                                         </svg>
                                     </div>
                                     <input type="time" id="start-time" name="checkIn_start"
-                                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         min="09:00" max="18:00" value="00:00" required />
                                 </div>
                             </div>
@@ -329,12 +329,12 @@
                                         </svg>
                                     </div>
                                     <input type="time" id="checkIn_end" name="checkIn_end"
-                                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         min="09:00" max="18:00" value="00:00" required />
                                 </div>
                             </div>
                         </div>
-                        <p>Check Out:</p>
+                        <p class="text-xl font-semibold text-gray-900">Check Out:</p>
                         <div class="flex gap-5 mb-3">
                             <div class="w-full">
                                 <label for="start-time"
@@ -352,7 +352,7 @@
                                         </svg>
                                     </div>
                                     <input type="time" id="start-time" name="checkOut_start"
-                                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         min="09:00" max="18:00" value="00:00" required />
                                 </div>
                             </div>
@@ -372,7 +372,7 @@
                                         </svg>
                                     </div>
                                     <input type="time" id="end-time" name="checkOut_end"
-                                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         min="09:00" max="18:00" value="00:00" required />
                                 </div>
                             </div>
@@ -385,8 +385,8 @@
                             <label for="">Whole Day?</label>
                         </div>
                         <div id="afternoon_attendance" class="hidden transition-all">
-                            <p>Afternoon Attendance</p>
-                            <p>Check In:</p>
+                            <p class="text-2xl font-semibold text-gray-900">Afternoon Attendance</p>
+                            <p class="text-xl font-semibold text-gray-900">Check In:</p>
                             <div class="flex gap-5 mb-3">
                                 <div class="w-full">
                                     <label for="start-time"
@@ -404,7 +404,7 @@
                                             </svg>
                                         </div>
                                         <input type="time" id="start-time" name="afternoon_checkIn_start"
-                                            class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                             min="09:00" max="18:00" value="00:00" required />
                                     </div>
                                 </div>
@@ -424,12 +424,12 @@
                                             </svg>
                                         </div>
                                         <input type="time" id="end-time" name="afternoon_checkIn_end"
-                                            class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                             min="09:00" max="18:00" value="00:00" required />
                                     </div>
                                 </div>
                             </div>
-                            <p>Check Out:</p>
+                            <p class="text-xl font-semibold text-gray-900">Check Out:</p>
                             <div class="flex gap-5 mb-3">
                                 <div class="w-full">
                                     <label for="start-time"
@@ -447,7 +447,7 @@
                                             </svg>
                                         </div>
                                         <input type="time" id="start-time" name="afternoon_checkOut_start"
-                                            class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                             min="09:00" max="18:00" value="00:00" required />
                                     </div>
                                 </div>
@@ -467,7 +467,7 @@
                                             </svg>
                                         </div>
                                         <input type="time" id="end-time" name="afternoon_checkOut_end"
-                                            class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                             min="09:00" max="18:00" value="00:00" required />
                                     </div>
                                 </div>
@@ -484,17 +484,17 @@
             </x-new-modal>
         </div>
 
-        <div class="overflow-x-auto shadow-md sm:rounded-lg">
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="min-w-full w-full text-sm text-center rtl:text-right text-gray-900 font-semibold">
-                <thead class="text-base text-gray-950 uppercase bg-gray-50">
-                    <tr class="bg-violet-200 text-violet-900 py-2 text-lg font-semibold">
-                        <td>Event Name</td>
-                        <td>Date</td>
-                        <td>Start of Check In</td>
-                        <td>End of Check In</td>
-                        <td>Start of Check Out</td>
-                        <td>End of Check Out</td>
-                        <td>Actions</td>
+                <thead class="text-lg font-semibold text-gray-100 uppercase bg-green-700">
+                    <tr>
+                        <th scope="col" class="py-5">Event Name</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Start of Check In</th>
+                        <th scope="col">End of Check In</th>
+                        <th scope="col">Start of Check Out</th>
+                        <th scope="col">End of Check Out</th>
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>

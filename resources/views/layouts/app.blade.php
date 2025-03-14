@@ -20,7 +20,7 @@
 <body class="font-sans antialiased bg-gray-200" onload="startTime()">
     <div class="min-h-full w-full bg-gray-200">
         <!-- Navigation Bar -->
-        <nav class="bg-gray-900 w-full fixed top-0 right-0 left-0">
+        <nav class="bg-green-700 w-full fixed top-0 right-0 left-0">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="flex h-16 items-center justify-between">
                     <div class="flex items-center">
@@ -116,7 +116,7 @@
                 class="max-h-[100px] fixed z-0 opacity-25 bottom-0 hover:opacity-100 transition-opacity duration-100">
 
             @isset($header)
-                <header>
+                <header class="px-5">
                     {{ $header }}
                 </header>
             @endisset

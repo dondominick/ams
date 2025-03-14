@@ -69,7 +69,7 @@
     <div class="flex gap-5 mb-4">
         <div class="bg-gray-900 h-auto basis-1/2 p-3 rounded-md flex flex-col justify-between">
             <div class="flex justify-between">
-                <div class="bg-gray-900 py-1 px-3">
+                <div class="py-1 px-3">
                     <h2 class="text-4xl font-semibold text-green-500">Welcome, <span class="text-gray-200">{{ ucwords(auth()->user()->admin_uname) }}</span></h2>
                     <p class="text-gray-200 pt-1">RFID Attendance Management System</p>
                 </div>
@@ -175,19 +175,19 @@
 
                         <div class="flex flex-col mb-3">
                             <label for="">Day or Event:</label>
-                            <input type="text" placeholder="Enter Event Name" name="event_name" class="bg-gray-800 text-green-500">
+                            <input type="text" placeholder="Enter Event Name" name="event_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                         </div>
 
                         <div class="flex flex-col mb-3">
                             <label for="">Event Date:</label>
-                            <input type="date" name="date" class="bg-gray-800 border leading-none border-gray-300 text-green-400 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                            <input type="date" name="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                         </div>
 
-                        <p class="text-xl text-green-500 font-bold">Check In:</p>
+                        <p class="text-xl text-gray-900 font-bold">Check In:</p>
                         <div class="flex gap-5 mb-3">
                             <div class="w-full">
                                 <label for="start-time"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Start
+                                    class="block mb-2 text-sm font-medium text-gray-900">Start
                                     time:</label>
                                 <div class="relative">
                                     <div
@@ -200,13 +200,13 @@
                                         </svg>
                                     </div>
                                     <input type="time" id="start-time" name="checkIn_start"
-                                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-green-500 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         min="09:00" max="18:00" value="00:00" required />
                                 </div>
                             </div>
                             <div class="w-full">
                                 <label for="end-time"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">End
+                                    class="block mb-2 text-sm font-medium text-gray-900">End
                                     time:</label>
                                 <div class="relative">
                                     <div
@@ -220,16 +220,16 @@
                                         </svg>
                                     </div>
                                     <input type="time" id="checkIn_end" name="checkIn_end"
-                                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-green-500 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         min="09:00" max="18:00" value="00:00" required />
                                 </div>
                             </div>
                         </div>
-                        <p>Check Out:</p>
+                        <p class="text-xl text-gray-900 font-bold">Check Out:</p>
                         <div class="flex gap-5 mb-3">
                             <div class="w-full">
                                 <label for="start-time"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Start
+                                    class="block mb-2 text-sm font-medium text-gray-900">Start
                                     time:</label>
                                 <div class="relative">
                                     <div
@@ -243,13 +243,13 @@
                                         </svg>
                                     </div>
                                     <input type="time" id="start-time" name="checkOut_start"
-                                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-green-500 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         min="09:00" max="18:00" value="00:00" required />
                                 </div>
                             </div>
                             <div class="w-full">
                                 <label for="end-time"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">End
+                                    class="block mb-2 text-sm font-medium text-gray-900">End
                                     time:</label>
                                 <div class="relative">
                                     <div
@@ -263,7 +263,7 @@
                                         </svg>
                                     </div>
                                     <input type="time" id="end-time" name="checkOut_end"
-                                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-green-500 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         min="09:00" max="18:00" value="00:00" required />
                                 </div>
                             </div>
@@ -276,12 +276,12 @@
 {{-- AFTERNOON ATTENDANCE --}}
 
                         <div id="afternoon_attendance" class="hidden transition-all">
-                            <p class="text-2xl font-bold text-green-500">Afternoon Attendance</p>
-                            <p class="text-xl font-semibold text-green-500">Check In:</p>
+                            <p class="text-2xl font-bold text-gray-900">Afternoon Attendance</p>
+                            <p class="text-xl font-semibold text-gray-900">Check In:</p>
                             <div class="flex gap-5 mb-3">
                                 <div class="w-full">
                                     <label for="start-time"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Start
+                                        class="block mb-2 text-sm font-medium text-gray-900">Start
                                         time:</label>
                                     <div class="relative">
                                         <div
@@ -295,13 +295,13 @@
                                             </svg>
                                         </div>
                                         <input type="time" id="start-time" name="afternoon_checkIn_start"
-                                            class="bg-gray-800 border leading-none border-gray-300 text-green-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                            class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                             min="09:00" max="18:00" value="00:00" required />
                                     </div>
                                 </div>
                                 <div class="w-full">
                                     <label for="end-time"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">End
+                                        class="block mb-2 text-sm font-medium text-gray-900">End
                                         time:</label>
                                     <div class="relative">
                                         <div
@@ -315,16 +315,16 @@
                                             </svg>
                                         </div>
                                         <input type="time" id="end-time" name="afternoon_checkIn_end"
-                                            class="bg-gray-800 border leading-none border-gray-300 text-green-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                            class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                             min="09:00" max="18:00" value="00:00" required />
                                     </div>
                                 </div>
                             </div>
-                            <p>Check Out:</p>
+                            <p class="text-xl text-gray-900 font-bold">Check Out:</p>
                             <div class="flex gap-5 mb-3">
                                 <div class="w-full">
                                     <label for="start-time"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Start
+                                        class="block mb-2 text-sm font-medium text-gray-900">Start
                                         time:</label>
                                     <div class="relative">
                                         <div
@@ -338,13 +338,13 @@
                                             </svg>
                                         </div>
                                         <input type="time" id="start-time" name="afternoon_checkOut_start"
-                                            class="bg-gray-800 border leading-none border-gray-300 text-green-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                            class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                             min="09:00" max="18:00" value="00:00" required />
                                     </div>
                                 </div>
                                 <div class="w-full">
                                     <label for="end-time"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">End
+                                        class="block mb-2 text-sm font-medium text-gray-900">End
                                         time:</label>
                                     <div class="relative">
                                         <div
@@ -358,7 +358,7 @@
                                             </svg>
                                         </div>
                                         <input type="time" id="end-time" name="afternoon_checkOut_end"
-                                            class="bg-gray-800 border leading-none border-gray-300 text-green-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                            class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                             min="09:00" max="18:00" value="00:00" required />
                                     </div>
                                 </div>
@@ -400,39 +400,39 @@
                                     <label for="">
                                         RFID
                                     </label>
-                                    <input type="text" placeholder="Scan RFID" name="s_rfid" id="s_rfid" class="bg-gray-800 border border-gray-300 text-green-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <input type="text" placeholder="Scan RFID" name="s_rfid" id="s_rfid" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                 </div>
                                 <div class="grid grid-cols-1">
                                     <label for="">Student ID:</label>
-                                    <input type="text" placeholder="Enter Student ID (Ex. 2023-00069)" class="bg-gray-800 border border-gray-300 text-green-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                    <input type="text" placeholder="Enter Student ID (Ex. 2023-00069)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         name="s_studentID" id="s_studentID">
                                 </div>
                             </div>
                             <div class="grid grid-cols-1 mt-5 mx-7">
                                 <label for="">First Name:</label>
-                                <input type="text" placeholder="Enter Firstname" name="s_fname" id="s_fname" class="bg-gray-800 border border-gray-300 text-green-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                <input type="text" placeholder="Enter Firstname" name="s_fname" id="s_fname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                             </div>
                             <div class="grid grid-cols-1 mt-5 mx-7">
                                 <label for="">Last Name:</label>
-                                <input type="text" placeholder="Enter Lastname" name="s_lname" id="s_lname" class="bg-gray-800 border border-gray-300 text-green-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                <input type="text" placeholder="Enter Lastname" name="s_lname" id="s_lname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
 
                                 <div class="grid grid-cols-1">
                                     <label for="">Middle Name</label>
-                                    <input type="text" placeholder="Enter Middlename" name="s_mname" class="bg-gray-800 border border-gray-300 text-green-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                    <input type="text" placeholder="Enter Middlename" name="s_mname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         id="s_mname">
                                 </div>
                                 <div class="grid grid-cols-1">
                                     <label for="">Suffix</label>
-                                    <input type="text" placeholder="Enter Suffix" name="s_suffix" id="s_suffix" class="bg-gray-800 border border-gray-300 text-green-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <input type="text" placeholder="Enter Suffix" name="s_suffix" id="s_suffix" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                 </div>
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8 mt-5 mx-7">
 
                                 <div class="grid grid-cols-1">
                                     <label for="">Program</label>
-                                    <select name="s_program" id="s_program" class="bg-gray-800 border border-gray-300 text-green-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <select name="s_program" id="s_program" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                         <option selected value="">Select Program</option>
                                         <option value="BSIT">BSIT</option>
                                         <option value="BSIS">BSIS</option>
@@ -440,7 +440,7 @@
                                 </div>
                                 <div class="grid grid-cols-1">
                                     <label for="">Year Level</label>
-                                    <select name="s_lvl" id="s_lvl" class="bg-gray-800 border border-gray-300 text-green-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <select name="s_lvl" id="s_lvl" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                         <option selected value="">Select Year Level</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -450,7 +450,7 @@
                                 </div>
                                 <div class="grid grid-cols-1">
                                     <label for="">Set</label>
-                                    <select name="s_set" id="s_set" class="bg-gray-800 border border-gray-300 text-green-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <select name="s_set" id="s_set" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                         <option selected value="">Select Set</option>
                                         <option value="A">A</option>
                                         <option value="B">B</option>
