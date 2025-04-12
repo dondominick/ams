@@ -17,7 +17,7 @@ class ImportController extends Controller
         try {
             // Validate the uploaded file
             $request->validate([
-                'file' => 'required|mimes:xlsx,xls',
+                'file' => 'required|mimes:xlsx,xls,csv', //Adjusted by Panzerweb: includes .csv
             ]);
 
             // Get the uploaded file

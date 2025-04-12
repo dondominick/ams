@@ -11,7 +11,7 @@ window.toggleDropdown = toggleDropdown;
 triggerDropdownOnLoad();
 // The code is from dashboard.blade.php sa script
 // Pero gi transfer lng nako dire para uniformed, since testing function raman sad
-function testStudentForm() {
+export function testStudentForm() {
     // Added Randomality of Test Users
     const testUsers = [
         {
