@@ -390,10 +390,10 @@
                                 </ul>
                             </form>
                             {{-- List for Status if Enrolled, Dropped, or Graduated --}}
-                            <form id="search_set" onchange="getCategory()">
+                            <form id="search_status" onchange="getCategory()">
                                 <ul class="space-y-2 text-sm" aria-labelledby="dropdownDefault">
                                     <label for="" class="font-semibold dark:text-gray-100">Status</label>
-                                    @foreach (['ENROLLED', 'DROPPED', 'GRADUATED'] as $status)
+                                    @foreach (['ENROLLED', 'DROPPED', 'GRADUATED', 'TO BE UPDATED'] as $status)
                                         <li class="flex items-center">
                                             <input value="{{ $status }}" type="checkbox" name="status"
                                                 class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
@@ -580,6 +580,8 @@
 
             {{-- Pagination view added by Panzerweb--}}
             {{$students->onEachSide(5)->links()}}
+
+
         </div>
 
     </div>

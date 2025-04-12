@@ -13,8 +13,8 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 class StudentAttendanceExport implements FromCollection, WithHeadings, WithStyles
 {
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
     private $students;
 
     public function collection()
@@ -22,14 +22,14 @@ class StudentAttendanceExport implements FromCollection, WithHeadings, WithStyle
         return $this->students;
     }
 
-    public function setCollection($request){
+    public function setCollection($request)
+    {
         $this->students = $request;
-
     }
 
     public function headings(): array
     {
-        return ["Student ID", "Last Name", "First Name" ,"Program", "Set", "Year Level", "Check In", "Check Out", "Event Name", "Date"];
+        return ["Student ID", "Last Name", "First Name", "Program", "Set", "Year Level", "Check In", "Check Out", "Event Name", "Date"];
     }
 
     public function styles(Worksheet $sheet)
@@ -37,11 +37,11 @@ class StudentAttendanceExport implements FromCollection, WithHeadings, WithStyle
         return [
             1 => [
                 'font' => ['bold' => true],
-                'fill'=> [
-                    'fillType'=> Fill::FILL_SOLID,
-                    'startColor'=> ['rgb'=> '4CAF50']
+                'fill' => [
+                    'fillType' => Fill::FILL_SOLID,
+                    'startColor' => ['rgb' => '4CAF50']
                 ]
-                ] // Make headers bold
+            ] // Make headers bold
         ];
     }
 }

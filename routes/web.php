@@ -90,8 +90,11 @@ Route::middleware('auth')->group(function () {
     // Fine Settings Routes
     Route::get('/fines', [FineController::class, 'view'])->name('fines.view');
     Route::put('/fines/settings', [FinesController::class, 'updateSettings'])->name('fines.settings.update');
+    // FINES -> API => VIA CATEGORY
+    Route::get('/fines/category', [FinesController::class, 'filterByCategory'])->name('fetchViaCategory');
+    // FINES -> API => VIA SEARCHBAR
+    Route::get('/fines/filter', [FinesController::class, 'filter'])->name('fetchFines');
 });
 
 
 require __DIR__ . '/auth.php';
-

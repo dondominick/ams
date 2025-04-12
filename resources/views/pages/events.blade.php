@@ -43,6 +43,7 @@
             </h2>
         </div>
     </x-slot>
+
     <div class="mt-4" x-data="{ open: false }">
         <div x-show.important="open" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
             <div x-on:click.outside="open = false" class="max-w-[1000px] bg-white p-6 rounded-lg shadow-lg">
@@ -152,7 +153,7 @@
                             <input type="checkbox" id="isWholeDay" name="wholeDay">
                             <label for="">Whole Day?</label>
                         </div>
-                        <div id="afternoon_attendance" class="hidden transition-all">
+                        <div id="update_afternoon_attendance" class="hidden transition-all">
                             <p class="text-2xl font-semibold text-gray-900">Afternoon Attendance</p>
                             <p class="text-xl font-semibold text-gray-900">Check In:</p>
                             <div class="flex gap-5 mb-3">
@@ -257,11 +258,6 @@
 
 
         <div class="flex justify-between items-center mb-3">
-
-            {{-- <h3 class="text-[20px] text-violet-800 font-extrabold">
-                Record of Events
-            </h3> --}}
-
             <x-new-modal>
                 <x-slot name="button"
                     class="bg-violet-600 hover:bg-violet-950 ease-linear transition-all duration-75 text-white rounded-xl px-2 text-[10px] flex items-center p-2 gap-1 w-5">
@@ -384,7 +380,7 @@
                             <input type="checkbox" id="wholeDay" name="wholeDay">
                             <label for="">Whole Day?</label>
                         </div>
-                        <div id="afternoon_attendance" class="hidden transition-all">
+                        <div id="create_afternoon_attendance" class="hidden transition-all">
                             <p class="text-2xl font-semibold text-gray-900">Afternoon Attendance</p>
                             <p class="text-xl font-semibold text-gray-900">Check In:</p>
                             <div class="flex gap-5 mb-3">
@@ -484,16 +480,23 @@
             </x-new-modal>
         </div>
 
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <div class="flex border-b">
+            <button onclick="toggleTab('upcoming')" class="px-4 py-2 font-semibold bg-gray-300" id="upcomingTab">Upcoming</button>
+            <button onclick="toggleTab('completed')" class="px-4 py-2 font-semibold bg-gray-300" id="completedTab">Completed</button>
+        </div>
+
+        <div id="upcoming" class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <h2 class="text-xl font-bold mt-4">Upcoming Events</h2>
+
             <table class="min-w-full w-full text-sm text-center rtl:text-right text-gray-900 font-semibold">
-                <thead class="text-lg font-semibold text-gray-100 uppercase bg-green-700">
+                <thead class="text-md font-semibold text-gray-100 uppercase bg-green-700">
                     <tr>
                         <th scope="col" class="py-5">Event Name</th>
                         <th scope="col">Date</th>
-                        <th scope="col">Start of Check In</th>
-                        <th scope="col">End of Check In</th>
-                        <th scope="col">Start of Check Out</th>
-                        <th scope="col">End of Check Out</th>
+                        <th scope="col">Time of Check In</th>
+                        <th scope="col">Time of Check Out</th>
+                        <th scope="col">Time of Check In - Afternoon</th>
+                        <th scope="col">Time of Check Out - Afternoon</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -502,10 +505,79 @@
                         <tr>
                             <td>{{ $event->event_name }}</td>
                             <td>{{ $event->date }}</td>
-                            <td>{{ date_format(date_create($event->checkIn_start), 'h:i A') }}</td>
-                            <td>{{ date_format(date_create($event->checkIn_end), 'h:i A') }}</td>
-                            <td>{{ date_format(date_create($event->checkOut_start), 'h:i A') }}</td>
-                            <td>{{ date_format(date_create($event->checkOut_end), 'h:i A' )}}</td>
+                            <td>{{ date_format(date_create($event->checkIn_start), 'h:i A') . " - " . date_format(date_create($event->checkIn_end), 'h:i A') }}</td>
+                            <td>{{ date_format(date_create($event->checkOut_start), 'h:i A') . " - " . date_format(date_create($event->checkOut_end), 'h:i A' )  }}</td>
+                            <td>
+                                @if ($event->afternoon_checkIn_start != null)
+                                    {{ date_format(date_create($event->afternoon_checkIn_start), 'h:i A') . " - " . date_format(date_create($event->afternoon_checkIn_end), 'h:i A') }}
+                                @else
+                                        ---
+                                @endif
+                            </td>
+                            <td>
+                                @if ($event->afternoon_checkOut_start != null)
+                                    {{ date_format(date_create($event->afternoon_checkOut_start), 'h:i A') . " - " . date_format(date_create($event->afternoon_checkOut_end), 'h:i A') }}
+                            @else
+                                    ---
+                            @endif
+                        </td>
+                            <td class="flex gap-3 py-3">
+                                <x-edit-button x-on:click="open = true" onclick="editEvent({{ $event }})">
+                                    {{-- Edit Button --}}
+                                </x-edit-button>
+                                <x-delete-button onclick="deleteEvent({{ $event }})">
+                                    {{-- Delete Button --}}
+                                </x-delete-button>
+
+                                {{-- Add Complete Event Button --}}
+                                <form action="{{ route('events.complete', $event->id) }}" method="POST" class="inline">
+                                    @csrf
+                                    <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                        Complete Event
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+
+                </tbody>
+            </table>
+        </div>
+        <div id="completed" class="tab-content hidden">
+            <h2 class="text-xl font-bold mt-4">Completed Events</h2>
+            <table class="min-w-full w-full text-sm text-center rtl:text-right text-gray-900 font-semibold">
+                <thead class="text-md font-semibold text-gray-100 uppercase bg-green-700">
+                    <tr>
+                        <th scope="col" class="py-5">Event Name</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Time of Check In</th>
+                        <th scope="col">Time of Check Out</th>
+                        <th scope="col">Time of Check In - Afternoon</th>
+                        <th scope="col">Time of Check Out - Afternoon</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($completed as $event)
+                        <tr>
+                            <td>{{ $event->event_name }}</td>
+                            <td>{{ $event->date }}</td>
+                            <td>{{ date_format(date_create($event->checkIn_start), 'h:i A') . " - " . date_format(date_create($event->checkIn_end), 'h:i A') }}</td>
+                            <td>{{ date_format(date_create($event->checkOut_start), 'h:i A') . " - " . date_format(date_create($event->checkOut_end), 'h:i A' )  }}</td>
+                            <td>
+                                @if ($event->afternoon_checkIn_start != null)
+                                    {{ date_format(date_create($event->afternoon_checkIn_start), 'h:i A') . " - " . date_format(date_create($event->afternoon_checkIn_end), 'h:i A') }}
+                                @else
+                                        ---
+                                @endif
+                            </td>
+                            <td>
+                                @if ($event->afternoon_checkOut_start != null)
+                                    {{ date_format(date_create($event->afternoon_checkOut_start), 'h:i A') . " - " . date_format(date_create($event->afternoon_checkOut_end), 'h:i A') }}
+                            @else
+                                    ---
+                            @endif
+                        </td>
                             <td class="flex gap-3 py-3">
                                 <x-edit-button x-on:click="open = true" onclick="editEvent({{ $event }})">
                                     {{-- Edit Button --}}

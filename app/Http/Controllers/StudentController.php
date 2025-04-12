@@ -52,7 +52,7 @@ class StudentController extends Controller
 
     public function view()
     {
-        $students = Student::paginate(5); //Changed by Panzerweb to paginate
+        $students = Student::paginate(10); //Changed by Panzerweb to paginate
         return view('pages.students', compact('students'));
     }
     public function update(Request $request)
@@ -125,7 +125,12 @@ class StudentController extends Controller
             $program = explode(',', $request->query('program'));
             $students = $students->where('s_program', $program);
         }
+        if ($request->query('status')) {
+            $status = explode(',', $request->query('status'));
+            $students = $students->where('s_status', $status);
+        }
         $students = $students->get();
+
 
         if (empty($students->first())) {
             return response()->json([

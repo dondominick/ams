@@ -1,6 +1,6 @@
 window.editEvent = editEvent;
 window.deleteEvent = deleteEvent;
-
+window.toggleTab = toggleTab;
 function editEvent(data) {
     console.log("editing event");
     console.log(data);
@@ -21,7 +21,10 @@ function editEvent(data) {
         data.afternoon_checkIn_end;
     if (data.isWholeDay == "true") {
         document.getElementById("isWholeDay").checked = true;
-        afternoon.classList.toggle("hidden");
+        update_afternoon.classList.remove("hidden");
+    } else {
+        document.getElementById("isWholeDay").checked = false;
+        update_afternoon.classList.add("hidden");
     }
 
     // document.getElementById('date').value = data.date;
@@ -34,11 +37,25 @@ function deleteEvent(data) {
     document.getElementById("deleteForm").submit();
 }
 // FOR MODAL EVENT WHOLE DAY
-const afternoon = document.querySelector("#afternoon_attendance");
+const update_afternoon = document.querySelector("#update_afternoon_attendance");
+const create_afternoon = document.querySelector("#create_afternoon_attendance");
+
 document.querySelector("#wholeDay").addEventListener("change", function () {
-    afternoon.classList.toggle("hidden");
+    create_afternoon.classList.toggle("hidden");
 });
 
 document.querySelector("#isWholeDay").addEventListener("change", function () {
-    afternoon.classList.toggle("hidden");
+    update_afternoon.classList.toggle("hidden");
 });
+
+function toggleTab(tab) {
+    document.getElementById("upcoming").classList.add("hidden");
+    document.getElementById("completed").classList.add("hidden");
+    document.getElementById(tab).classList.remove("hidden");
+
+    document.getElementById("upcomingTab").classList.remove("bg-gray-400");
+    document.getElementById("completedTab").classList.remove("bg-gray-400");
+    document.getElementById(tab + "Tab").classList.add("bg-gray-400");
+}
+
+toggleTab("upcoming");

@@ -95,11 +95,15 @@ async function getCategory() {
     const set = document.querySelectorAll(
         '#search_set input[name="set"]:checked'
     );
+    const status = document.querySelectorAll(
+        '#search_status input[name="status"]:checked'
+    );
+
     let uri = baseUrl;
     const program_data = Array.from(program).map((cb) => cb.value);
     const lvl_data = Array.from(lvl).map((cb) => cb.value);
     const set_data = Array.from(set).map((cb) => cb.value);
-
+    const status_data = Array.from(status).map((cb) => cb.value);
     uri += "&&program=";
     program_data.forEach((element) => {
         uri += element + ",";
@@ -112,6 +116,11 @@ async function getCategory() {
     uri += "&&set=";
 
     set_data.forEach((element) => {
+        uri += element + ",";
+    });
+
+    uri += "&&status=";
+    status_data.forEach((element) => {
         uri += element + ",";
     });
     const data = await searchViaCategory(uri);
@@ -157,11 +166,8 @@ async function getCategory() {
     </td>
 </tr>`;
         });
-
+        document.getElementById("std_info_table").innerHTML = "";
         Array.from(table_row).forEach((element) => {
-            element.addEventListener("dblclick", (e) => {
-                console.log("Hello World");
-            });
             element.addEventListener("click", (e) => {
                 // element.classList.toggle('selected', 'bg-green-500', 'shadow-lg', 'shadow-green-800')
                 element.classList.toggle("selected");
