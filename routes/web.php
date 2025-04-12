@@ -66,7 +66,6 @@ Route::middleware('auth')->group(function () {
     // STUDENT - API => VIA SEARCHBAR
     Route::get('/students/filter', [StudentController::class, 'filter'])->name('fetchStudent');
 
-
     // STUDENT - API => VIA CATEGORY
     Route::get('/students/category', [StudentController::class, 'filterByCategory'])->name('fetchViaCategory');
 
@@ -96,28 +95,3 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
-
-
-// THE CODE BELOW IS USED FOR DEVELOPMENT AND TESTING  PURPOSES ONLY
-// API TESTING OR DEVELOPMENT
-Route::get('/api/test/1', function () {
-    $data = new Attendance(User::all());
-    return view('test.test_1', compact('data'));
-})->name('api_test_1');
-
-Route::get('/api/test/2', function () {
-    // $response = Http::get('https://jsonplaceholder.typicode.com/posts');
-    // $data = $response->json(); // Convert response to array
-    return response()->json([
-        "message" => "WOrking",
-    ]);
-});
-
-Route::post('/api/test/3', function (Request $request) {
-
-    return response()->json([
-        "message" => "POST created successfully",
-        "data" => $request->name
-
-    ]);
-})->name('postAPI');

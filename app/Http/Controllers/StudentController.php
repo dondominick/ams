@@ -35,7 +35,7 @@ class StudentController extends Controller
             return back()->with('success', 'Student Added Successfully');
         } catch (\Throwable $error) {
             //Identifies unique fields
-            $fields =[
+            $fields = [
                 "s_rfid" => $request->s_rfid,
                 "s_studentID" => $request->s_studentID,
             ];
@@ -70,8 +70,8 @@ class StudentController extends Controller
         ]);
         $path = null;
         if ($request->hasFile('s_image')) {
-            $request->file('s_image')->store('profile_pictures');
-            $path = $request->file('s_image')->getClientOriginalName();
+            $path = $request->file('s_image')->store('profile_pictures', 'public');
+            $fields['s_image'] = $path;
         }
 
         $fields['s_suffix'] = $request->s_suffix;
@@ -145,42 +145,43 @@ class StudentController extends Controller
     public function updateMany(Request $request)
     {
         $request->validate([
-            "students"=>['required']
+            "students" => ['required']
         ]);
 
-        foreach(explode(',', $request->students) as $id){
+        foreach (explode(',', $request->students) as $id) {
             $students = Student::where('id', $id);
-            if($request->s_set){
-                $students->update(['s_set'=> $request->s_set]);
+            if ($request->s_set) {
+                $students->update(['s_set' => $request->s_set]);
             }
 
-            if($request->s_status){
-                $students->update(['s_status'=>$request->s_status]);
+            if ($request->s_status) {
+                $students->update(['s_status' => $request->s_status]);
             }
-            if($request->s_program){
-                $students->update(['s_program'=>$request->s_program]);
+            if ($request->s_program) {
+                $students->update(['s_program' => $request->s_program]);
             }
-            if($request->s_lvl){
-                $students->update(['s_lvl'=>$request->s_lvl]);
+            if ($request->s_lvl) {
+                $students->update(['s_lvl' => $request->s_lvl]);
             }
         }
 
 
 
-        return back()->with(["success"=> "Students updated successfully"]);
+        return back()->with(["success" => "Students updated successfully"]);
         //Changed the first param into success to allow Sweet Alert for Confirm dialog
         //From student.js
     }
 
 
-    public function manyDelete(Request $request){
+    public function manyDelete(Request $request)
+    {
         $request->validate([
-            "students"=>['required']
+            "students" => ['required']
         ]);
-        foreach(explode(',', $request->students) as $id){
+        foreach (explode(',', $request->students) as $id) {
             Student::find($id)->delete();
         }
-        return back()->with(['success' => 'Student deleted successfully']); 
+        return back()->with(['success' => 'Student deleted successfully']);
         //Changed the first param into success to allow Sweet Alert for Confirm dialog
         //From student.js
 

@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('isWholeDay')->default('false');
             $table->string('event_status')->default('pending');
             $table->foreignId('admin_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('fines')->default(25);
             $table->timestamps();
         });
     }

@@ -1,3 +1,4 @@
+import Alpine from "alpinejs";
 import axios from "axios";
 //Added testing function
 import { testStudentForm } from "./dashboard";
@@ -10,7 +11,7 @@ const api = axios.create({
     },
 });
 
-function updateStudent(data) {
+function updateStudent(data, image) {
     console.log(data);
     console.log(data.s_rfid);
     document.getElementById("s_RFID").value = data.s_rfid;
@@ -24,6 +25,8 @@ function updateStudent(data) {
     document.getElementById("s_LVL").value = data.s_lvl;
     document.getElementById("s_SET").value = data.s_set;
     document.getElementById("s_ID").value = data.id;
+    document.getElementById("uploadImage").src = image;
+    console.log(document.getElementById("uploadImage").src);
 }
 function deleteStudent(data) {
     console.log(data);
@@ -323,8 +326,8 @@ async function search(uri, data) {
             </svg>
         </button>
     </td>
-</tr>`
-        document.getElementById("std_info_table").style.display = 'none'; //Line by Panzerweb: When search is empty, remove the span
+</tr>`;
+            document.getElementById("std_info_table").style.display = "none"; //Line by Panzerweb: When search is empty, remove the span
         });
         Array.from(table_row).forEach((element) => {
             element.addEventListener("click", (e) => {
@@ -334,12 +337,13 @@ async function search(uri, data) {
                 console.log(element.id);
             });
         });
-    } else{
+    } else {
         //Code by Panzerweb: If search does not match, display text 'No Student Found'
-        document.getElementById("std_info_table").style.display = 'block';
-        document.getElementById("std_info_table").innerHTML = `<h3 class="text-center tracking-wide text-gray-500 text-xl">No Student Found</h3>`;
+        document.getElementById("std_info_table").style.display = "block";
+        document.getElementById(
+            "std_info_table"
+        ).innerHTML = `<h3 class="text-center tracking-wide text-gray-500 text-xl">No Student Found</h3>`;
     }
-
 }
 async function searchViaCategory(uri) {
     try {
