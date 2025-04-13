@@ -54,6 +54,62 @@
             });
         </script>
     @endif
+        {{-- Code by Panzerweb: Added second error handling for sweet alert --}}
+        {{-- Error popup modified by Panzerweb --}}
+    @if (session('error'))
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const errors = @json(session('error'));
+            console.log(errors);
+            let errorList = '<ul class="pl-5 text-sm text-red-700">';
+            for (const [key, value] of Object.entries(errors.details)) {
+                errorList += `<li><strong>${key}:</strong> ${value}</li>`;
+            }
+            errorList += '</ul>';
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops!',
+                html: 
+                `   <h2 class="text-lg font-semibold text-red-600">Something is wrong!</h2><br>
+                    <div class="w-full max-w-md mx-auto">
+                        <div class="">
+                            <button onclick="toggleAccordion()" class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                                View Details
+                            </button>
+                            <div id="errorDetails" class="hidden p-4 bg-red-100 border-t border-gray-300 rounded-lg">
+                                    <div>
+                                        <h3 class="text-lg font-semibold text-red-700 flex items-center gap-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636a9 9 0 11-12.728 0 9 9 0 0112.728 0zM12 8v4m0 4h.01" />
+                                            </svg>
+                                            Full Error Details
+                                        </h3>
+                                        <p class="text-sm text-red-600">
+                                            The following information might help you identify and fix the issue:
+                                        </p>
+                                    </div>
+                                    <div class="bg-gray-200 p-4 rounded-md border border-red-200">
+                                        <p class="text-md font-medium text-red-800 mb-2">Error Message:</p>
+                                        <p class="text-sm text-red-700 italic">
+                                            The error shows that either a <b>Student RFID</b> or <b>Student ID</b> has been duplicated, or there are <b> empty fields </b>, please check carefully input details of inserted data.   
+                                        </p>
+                                        <div class="bg-gray-100 p-4 rounded-md border border-red-200">
+                                            <p class="text-sm font-medium text-red-800 mb-2">Details affected:</p>
+                                            ${errorList}
+                                        </div>
+
+                                        <span class="text-sm"><strong>Full error message: </strong>${errors.message}</span>
+                                    </div>
+                                    
+                            </div>
+                        </div>
+                    </div>`,         
+                showConfirmButton: true,
+            });
+        });
+    </script>
+    @endif
 
     {{-- <x-slot name="header">
         <div class="flex items-center gap-3">
@@ -565,10 +621,17 @@
         });
 
         // FOR MODAL EVENT WHOLE DAY
-const afternoon = document.querySelector("#afternoon_attendance");
-document.querySelector("#wholeDay").addEventListener("change", function () {
-    afternoon.classList.toggle("hidden");
-});
+        const afternoon = document.querySelector("#afternoon_attendance");
+        document.querySelector("#wholeDay").addEventListener("change", function () {
+            afternoon.classList.toggle("hidden");
+        });
+
+        // Code by Panzerweb: for error details accordion
+        // Accordion for Error Details
+        function toggleAccordion() {
+            let details = document.getElementById("errorDetails");
+            details.classList.toggle("hidden");
+        }
     </script>
 
 </x-app-layout>
