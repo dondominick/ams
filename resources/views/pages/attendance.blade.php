@@ -67,12 +67,17 @@
                             <h2 class="text-lg font-bold text-gray-100">
                                 Orientation:
                                 <span class="text-gray-200 font-light">
-                                    {{$event->isWholeDay ? 'Half-Day' : 'Whole-Day'}}
+                                    {{-- Line by Panzerweb: fixed proper message --}}
+                                    {{$event->isWholeDay ? 'Wholeday' : 'Half-Day'}}
                                 </span>
                             </h2>
                         </div>
                         <div class="block">
-                            <h2 class="text-lg font-bold text-gray-100">
+                            {{-- Line by Panzerweb --}}
+                            <h2 class="bg-yellow-100 text-yellow-800 text-lg font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-yellow-300 border border-yellow-300">
+                                Morning
+                            </h2>
+                            <h2 class="text-md font-bold text-gray-100">
                                 Check In:
                                 <span class="text-gray-200 font-light">
                                     {{ date_format(date_create($event->checkIn_start), 'h:i A') }}
@@ -84,7 +89,7 @@
                             </h2>
                         </div>
                         <div class="block">
-                            <h2 class="text-lg font-bold text-gray-100">
+                            <h2 class="text-md font-bold text-gray-100">
                                 Check Out:
                                 <span class="text-gray-200 font-light">
                                     {{ date_format(date_create($event->checkOut_start), 'h:i A') }}
@@ -95,6 +100,33 @@
                                 </span>
                             </h2>
                         </div>
+                        {{-- Code by Panzerweb: added afternoon time-in/outs details--}}
+                        {{-- If Whole day --- then show timein/outs --}}
+                        @if ($event->isWholeDay)
+                            <h2 class="bg-yellow-100 text-yellow-800 text-lg font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-yellow-300 border border-yellow-300">
+                                Afternoon
+                            </h2>
+                            <h2 class="text-md font-bold text-gray-100">
+                                Check In:
+                                <span class="text-gray-200 font-light">
+                                    {{ date_format(date_create($event->afternoon_checkIn_start), 'h:i A') }}
+                                </span>
+                                -
+                                <span class="text-gray-200 font-light">
+                                    {{ date_format(date_create($event->afternoon_checkIn_end), 'h:i A') }}
+                                </span>
+                            </h2>
+                            <h2 class="text-md font-bold text-gray-100">
+                                Check Out:
+                                <span class="text-gray-200 font-light">
+                                    {{ date_format(date_create($event->afternoon_checkOut_start), 'h:i A') }}
+                                </span>
+                                -
+                                <span class="text-gray-200 font-light">
+                                    {{ date_format(date_create($event->afternoon_checkOut_end), 'h:i A') }}
+                                </span>
+                            </h2>
+                        @endif
 
                     </div>
                 @endif
@@ -112,8 +144,8 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm1.294 6.336a6.721 6.721 0 0 1-3.17.789 6.721 6.721 0 0 1-3.168-.789 3.376 3.376 0 0 1 6.338 0Z" />
                                     </svg>
-                                      
-                                    Manually Enter RFID
+                                    
+                                    RFID/Student ID
                                 </div>
                             </button>
                             <button onclick="startInterval()"
@@ -143,7 +175,10 @@
                                         <input type="hidden" name="event_id" value="{{ $event->id }}">
                                         <input type="hidden" name="uri" value="{{ route('attendanceStudent') }}">
                                         <div class="flex flex-col">
-                                            <label class="text-lg font-semibold" for="">Enter RFID:</label>
+                                            <label class="text-lg font-semibold" for="">
+                                                Enter ID: 
+                                                <span class="text-md text-gray-500 mt-1">(Student ID/RFID)</span>
+                                            </label>
                                             <input type="text" name="s_rfid" id="inputField" autocomplete="off">
                                         </div>
                                     </form>
@@ -172,6 +207,7 @@
             </h3>
         </div>
 
+        {{-- Code by Panzerweb: added afternoon time-in/outs in table columns --}}
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="min-w-full w-full text-sm text-center rtl:text-right text-gray-900 font-semibold">
                 <thead class="text-lg font-semibold text-gray-100 uppercase bg-green-700">
@@ -180,8 +216,10 @@
                         <td>Program</td>
                         <td>Set</td>
                         <td>Year Level</td>
-                        <td>Time In</td>
-                        <td>Time Out</td>
+                        <td>Morning Time In</td>
+                        <td>Morning Time Out</td>
+                        <td>Afternoon Time In</td>
+                        <td>Afternoon Time Out</td>
                         <td>Date</td>
                     </tr>
                 </thead>
@@ -193,8 +231,13 @@
                                 <td>{{$student->s_program}}</td>
                                 <td>{{$student->s_set}}</td>
                                 <td>{{$student->s_lvl}}</td>
-                                <td>{{$student->attend_checkIn}}</td>
-                                <td>{{$student->attend_checkOut}}</td>
+
+                                
+                                <td>{{$student->attend_checkIn ? date_format(date_create($student->attend_checkIn), 'h:i: A') : '---'}}</td>
+                                <td>{{$student->attend_checkOut ? date_format(date_create($student->attend_checkOut), 'h:i: A') : '---'}}</td>
+                                <td>{{$student->attend_afternoon_checkIn ? date_format(date_create($student->attend_afternoon_checkIn), 'h:i: A') : '---'}}</td>
+                                <td>{{$student->attend_afternoon_checkOut ? date_format(date_create($student->attend_afternoon_checkOut), 'h:i: A') : '---'}}</td>
+                                
                                 <td>{{$student->created_at}}</td>
                             </tr>
                         @endforeach
